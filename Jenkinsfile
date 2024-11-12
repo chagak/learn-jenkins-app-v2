@@ -24,6 +24,12 @@ pipeline {
             steps {
                 sh '''
                     echo "Test stage"
+                    if [ -f /path/to/directory/filename ]; then
+                            echo "File exists."
+                        else
+                            echo "File does not exist."
+                        fi
+
                 '''
             }
         }
