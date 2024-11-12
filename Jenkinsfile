@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh '''
                     echo "Test stage"
-                    if [ -f /path/to/directory/filename ]; then
+                    if [ -f /build/index.html ]; then
                             echo "File exists."
                         else
                             echo "File does not exist."
