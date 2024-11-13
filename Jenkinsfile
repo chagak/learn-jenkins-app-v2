@@ -58,7 +58,7 @@ pipeline {
     post {
         always {
             // test-result directory is not in the working directory
-            #junit 'test-result/junit.xml'
+            //junit 'test-result/junit.xml'
         }
     }
 }
