@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-         stage('Build') {
+        stage('Build') {
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -20,7 +20,8 @@ pipeline {
                 '''
             }
         }
-        stage ('"Test"') {
+        
+        stage('Test') {  // Removed quotes around the stage name
             agent {
                 docker {
                     image 'node:18-alpine'
@@ -30,16 +31,17 @@ pipeline {
             steps {
                 sh '''
                     echo "Test stage"
-                    if [ -f /build/index.html ]; then
-                            echo "File exists."
-                        else
-                            echo "File does not exist."
-                        fi
+                    if [ -f build/index.html ]; then
+                        echo "File exists."
+                    else
+                        echo "File does not exist."
+                    fi
                     npm test
                 '''
             }
         }
-        stage ('E2E') {
+        
+        stage('E2E') {
             agent {
                 docker {
                     image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
@@ -55,11 +57,12 @@ pipeline {
             }
         }
     }
+    
     post {
         always {
-            // test-result directory is not in the working directory
-            //junit 'test-result/junit.xml'
-            sh echo "test-result directory is not in the working directory"
+            echo "test-result directory is not in the working directory"
+            // Uncomment and correct the path if JUnit files are expected
+            // junit 'test-result/junit.xml'
         }
     }
 }
