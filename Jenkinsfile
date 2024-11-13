@@ -61,7 +61,7 @@ pipeline {
     
     post {
         always {
-            //echo "test-result directory is not in the working directory"
+            echo "test-result directory is not in the working directory"
             // Uncomment and correct the path if JUnit files are expected
             junit 'test-result/junit.xml'
         }
