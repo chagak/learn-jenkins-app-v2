@@ -59,6 +59,7 @@ pipeline {
         always {
             // test-result directory is not in the working directory
             //junit 'test-result/junit.xml'
+            sh echo "test-result directory is not in the working directory"
         }
     }
 }
